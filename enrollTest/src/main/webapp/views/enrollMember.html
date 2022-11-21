@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>자기소개</title>
+</head>
+<body>
+<!-- 웹프로젝트 한개 생성해서
+	 아이디, 패스워드, 이름, 닉네임, 사용가능언어(중복선택) http/css, javascript, jquery, servlet
+	 성별(radio)
+	 자기소개를 입력받아
+	 enrollData.do로 전송하여 받은내용을 출력해주는 기능 구현하기
+
+	 index.html -> 회원가입 버튼 -> views/enrollMember.html
+	 -> /enrollData.do -> 입력한 내용출력 -->
+	<form action="/enrollTest/enrollData.do" method="post">
+		<ul>
+			<li>
+				<label>
+					아이디 <input type="text" name="userId">
+				</label>
+			</li>
+			<li>
+				<label>
+					비밀번호 <input type="password" name="password">
+				</label>
+			</li>
+			<li>
+				<label>
+					이름 <input type="text" name="name">
+				</label>
+			</li>
+			<li>
+				<label>
+					닉네임 <input type="text" name="nickname">
+				</label>
+			</li>
+			<li>사용가능언어(중복선택)
+				<label>
+					 <input type="checkbox" name="language" value="http/css">http/css
+				</label>
+				<label>
+					 <input type="checkbox" name="language" value="javascript">javascript
+				</label>
+				<label>
+					 <input type="checkbox" name="language" value="jquery">jquery
+				</label>
+				<label>
+					 <input type="checkbox" name="language" value="servlet">servlet
+				</label>
+			</li>
+			<li>
+				<label>
+					<input type="radio" name="gender" value="남자">남자
+				</label>
+				<label>
+					<input type="radio" name="gender" value="여자">여자
+				</label>
+			</li>
+			<li>
+				<input type="submit" value="제출"><br>
+				<input type="reset" value="취소">
+			</li>
+		</ul>
+	</form>
+</body>
+</html>
