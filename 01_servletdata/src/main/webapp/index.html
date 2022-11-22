@@ -38,5 +38,32 @@
 	<h3><a href="views/testPerson2.html">서버내에서 다른서블릿 호출하기-RequestDispatcher</a></h3>
 	<h3><a href="views/testPerson3.html">서버내에서 다른서블릿 호출하기(재요청)-sendRedirect</a></h3>
 	
+	<h2>서버에서 데이터를 저장하는 객체</h2>
+	<ul>
+		<li>
+			HttpServletRequest : 1회용 데이터를 저장하는 저장소<br>
+			*1회용 -> 요청하고 응답이 완료될때까지만 사용</li>
+		<li>
+			HttpSession : 원하는 시점까지 데이터를 유지하는 저장소<br>
+			*개발자가 삭제하거나 설정값에 의해 자동으로 삭제될때까지 이용
+		</li>
+		<li>
+			ServletContext : 서버가 실행되고 종료될 때까지 유지하는 저장소<br>
+		</li>
+	</ul>
+	<p>
+		setAttribute()메소드로 key:value형식으로 저장함<br>
+		getAttribute("key")메소드로 값을 가져옴 -> 반환형이 Object로 형변환을 해서 사용함.
+	</p>
+	<h3><a href="sharedata.do">데이터저장객체 활용</a></h3>
+	
+	<h2>로그인 구현하기</h2>
+	<form action="loginend.do" method="post">
+		<input type="text" name="userId">
+		<input type="password" name="password">
+		<input type="submit" value="로그인">
+		<input type="reset" value="취소">
+	</form>
+	
 </body>
 </html>
