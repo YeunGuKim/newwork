@@ -45,10 +45,15 @@ public class CreateCookieServlet extends HttpServlet {
 		html+="<body>";
 		html+="<h2><a href='cookiecheck.do'>쿠키확인하기</a></h2>";
 		html+="<h2><a href='cookiedelete.do'>쿠키삭제하기</a></h2>";
+		html+="<h2><a href='headerdata.do'>이전페이지확인</a></h2>";
+		String admin=getServletContext().getInitParameter("admin");
+		String initData=getInitParameter("headerServlet");
+		html+="<h2>context-param : "+admin+"</h2>";
+		html+="<h2>init-param : "+initData+"</h2>";
 		html+="</body>";
 		html+="</html>";
 		
-		response.getWriter().write(html);;
+		response.getWriter().write(html);
 		
 	}
 
