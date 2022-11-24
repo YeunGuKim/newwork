@@ -132,6 +132,19 @@
 	<h2>에러페이지 등록하기</h2>
 	<h3><a href="views/errortest.jsp">에러페이지 테스트</a></h3>
 	
+	<h2>
+		<a href="<%=request.getContextPath() %>/searchmemberall.do">전체회원조회하기</a>
+	</h2>
+	
+	<h2>조건으로 회원조회하기</h2>
+<%-- 	<a href="<%=request.getContextPath() %>/searchmembername.do">이름으로 검색</a> --%>
+	<form action="<%=request.getContextPath() %>/searchmembername.do" method="get">
+		<input type="text" name="name">
+		<input type="submit" value="검색">
+	</form>
+	
+	
+	
 	
 	
 </body>
