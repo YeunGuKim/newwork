@@ -31,7 +31,7 @@ public class JDBCTemplate {
 	}
 	public static void close(Connection conn) {
 		try {
-			if(conn!=null&&conn.isClosed()) {
+			if(conn!=null&&!conn.isClosed()) {
 				conn.close();
 			}
 		}
@@ -41,7 +41,7 @@ public class JDBCTemplate {
 	}
 	public static void close(PreparedStatement pstmt) {
 		try {
-			if(pstmt!=null&&pstmt.isClosed()) {
+			if(pstmt!=null&&!pstmt.isClosed()) {
 				pstmt.close();
 			}
 		}
@@ -51,7 +51,7 @@ public class JDBCTemplate {
 	}
 	public static void close(ResultSet rs) {
 		try {
-			if(rs!=null&&rs.isClosed()) {
+			if(rs!=null&&!rs.isClosed()) {
 				rs.close();
 			}
 		}
@@ -61,7 +61,7 @@ public class JDBCTemplate {
 	}
 	public static void commit(Connection conn) {
 		try {
-			if(conn!=null&&conn.isClosed()) {
+			if(conn!=null&&!conn.isClosed()) {
 				conn.commit();
 			}
 		}
@@ -71,7 +71,7 @@ public class JDBCTemplate {
 	}
 	public static void rollback(Connection conn) {
 		try {
-			if(conn!=null&&conn.isClosed()) {
+			if(conn!=null&&!conn.isClosed()) {
 				conn.rollback();
 			}
 		}
