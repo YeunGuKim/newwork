@@ -39,4 +39,8 @@ public class MemberService {
 		close(conn);
 		return result;
 	}
+	public Member searchMemberId(String userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
