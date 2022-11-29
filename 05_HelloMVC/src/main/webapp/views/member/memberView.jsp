@@ -3,7 +3,7 @@
 <%
 	Member m=(Member)request.getAttribute("member");
 	String[] hobbys=m.getHobby();
-	//[운동, 독서]
+// 	[운동, 독서]
 	String[] checkData=new String[5];
 	for(String h:hobbys){
 		switch(h){	
@@ -18,12 +18,12 @@
 <%@ include file="/views/common/header.jsp" %>
 <section id=enroll-container>
 		<h2>회원 정보 수정</h2>
-		<form id="memberFrm" method="post" >
+		<form id="memberFrm" method="post" action="">
 			<table>
 				<tr>
 					<th>아이디</th>
 					<td>
-						<input type="text" name="userId" id="userId_" value="<%=m.getUserId()%>">
+						<input type="text" name="userId" id="userId_" value="<%=m.getUserId()%>" readonly="readonly">
 					</td>
 				</tr>
 				<tr>
@@ -93,8 +93,19 @@
 					</td>
 				</tr>
 			</table>
-			<input type="button" value="정보수정"/>
-			<input type="button" value="탈퇴"/>
+			<input type="button" value="정보수정" onclick="fn_updateMember();"/>
+			<input type="button" value="탈퇴" onclick="fn_deleteMember();"/>
 		</form>
 	</section>
+	<script>
+		const fn_updateMember=()=>{
+			$("#memberFrm").attr("action","<%=request.getContextPath()%>/member/updateMember.do")
+			$("#memberFrm").submit();
+		}
+		
+		const fn_deleteMember=()=>{
+			$("#memberFrm").attr("action","<%=request.getContextPath()%>/member/deleteMember.do")
+			$("#memberFrm").submit();
+		}
+	</script>
 <%@ include file="/views/common/footer.jsp"%>

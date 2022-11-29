@@ -2,8 +2,8 @@ package com.web.member.model.service;
 
 import static com.web.common.JDBCTemplate.close;
 import static com.web.common.JDBCTemplate.commit;
-import static com.web.common.JDBCTemplate.rollback;
 import static com.web.common.JDBCTemplate.getConnection;
+import static com.web.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 
@@ -40,7 +40,25 @@ public class MemberService {
 		return result;
 	}
 	public Member searchMemberId(String userId) {
-		// TODO Auto-generated method stub
-		return null;
+		Connection conn=getConnection();
+		Member m=dao.searchMemberId(conn, userId);
+		close(conn);
+		return m;
+	}
+	
+	public int updateMember(Member m) {
+		Connection conn=getConnection();
+		int result=dao.updateMember(conn,m);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		return result;
+	}
+	
+	public int deleteMember(Member m) {
+		Connection conn=getConnection();
+		int result=dao.deleteMember(conn,m);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		return result;
 	}
 }

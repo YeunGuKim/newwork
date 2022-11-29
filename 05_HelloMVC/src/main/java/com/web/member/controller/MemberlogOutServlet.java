@@ -35,6 +35,7 @@ public class MemberlogOutServlet extends HttpServlet {
 			session.invalidate();
 		}
 		response.sendRedirect(request.getContextPath());
+//		request.getRequestDispatcher("/").forward(request, response);
 	
 	
 	
