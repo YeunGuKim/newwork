@@ -3,6 +3,7 @@
 <%
 	String msg=(String)request.getAttribute("msg");
 	String loc=(String)request.getAttribute("loc");
+	String script=(String)request.getAttribute("script");
 %>
 <!DOCTYPE html>
 <html>
@@ -15,6 +16,7 @@
 		alert('<%=msg%>');
 		// /05_HelloMVC/+@
 		location.replace("<%=request.getContextPath()%><%=loc%>");
+		<%=script!=null?script:""%>
 	</script>
 </body>
 </html>

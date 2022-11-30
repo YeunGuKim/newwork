@@ -15,7 +15,7 @@ public class PasswordEncodingWrapper extends HttpServletRequestWrapper {
 	
 	@Override
 	public String getParameter(String name) {
-		if(name.equals("password")) {
+		if(name.contains("password")) {
 			//데이터를 단방향 암호화해서 반환하기
 //			String ori=super.getParameter(name);
 //			System.out.println("암호화 전 : "+ori);
@@ -27,7 +27,7 @@ public class PasswordEncodingWrapper extends HttpServletRequestWrapper {
 		return super.getParameter(name);//원본값
 	}
 	
-	private String getSHA512(String orival) {
+	private String getSHA512(String oriVal) {
 		//단반향 암호화하기
 		//java에서 암호화처리 클래스를 제공해줌 -> MessageDigest클래스
 		MessageDigest md=null;
@@ -40,7 +40,7 @@ public class PasswordEncodingWrapper extends HttpServletRequestWrapper {
 			e.printStackTrace();
 		}
 		//md를 이용해서 암호화처리를 진행 -> byte[]로 변경해서 암호화를 처리
-		byte[] oriDataByte=orival.getBytes();
+		byte[] oriDataByte=oriVal.getBytes();
 		md.update(oriDataByte);//SHA-512방식으로 암호화처리
 		byte[] encryptData=md.digest();//암호화된 값을 byte배열로 가져옴
 		//Base64인코더를 이용해서 byte[]로 출력된 내용을 문자열(String)로 변환

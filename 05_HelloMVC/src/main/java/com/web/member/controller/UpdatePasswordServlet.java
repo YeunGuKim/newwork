@@ -1,27 +1,23 @@
 package com.web.member.controller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.web.member.model.service.MemberService;
-import com.web.member.model.vo.Member;
-
 /**
- * Servlet implementation class DeleteMemberServlet
+ * Servlet implementation class UpdatePasswordServlet
  */
-@WebServlet("/member/deleteMember.do")
-public class DeleteMemberServlet extends HttpServlet {
+@WebServlet("/member/updatePassword.do")
+public class UpdatePasswordServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteMemberServlet() {
+    public UpdatePasswordServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,14 +26,10 @@ public class DeleteMemberServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		request.setCharacterEncoding("utf-8");
-		Member m=Member.builder().userId(request.getParameter("userId")).build();
+		//비밀번호 변경하는 페이지로 연결해주는 기능
+		request.getRequestDispatcher("/views/member/updatePassword.jsp").forward(request, response);
 		
-		int result=new MemberService().deleteMember(m);
-		request.setAttribute("msg", result>0?"잘가고 다음에 또와":"넌 못가");
-		request.setAttribute("loc", "/logout.do");
-		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+		
 	}
 
 	/**

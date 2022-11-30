@@ -47,6 +47,8 @@ public class UpdateMemberServlet extends HttpServlet {
 		if(result>0) {
 			msg="회원정보 수정완료";
 			loc="/";
+			//session의 저장된 데이터를 변경해줘야한다.
+			request.getSession().setAttribute("loginMember", m);
 		}
 		else {
 			msg="회원정보 수정실패";

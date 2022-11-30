@@ -118,7 +118,7 @@ public class MemberDao {
 		}
 		return result;
 	}
-	private Member getMember(ResultSet rs) throws SQLException {
+	public static Member getMember(ResultSet rs) throws SQLException {
 		return Member.builder()
 				.userId(rs.getString("userId"))
 				.password(rs.getString("password"))
@@ -163,6 +163,24 @@ public class MemberDao {
 		try {
 			pstmt=conn.prepareStatement(sql.getProperty("deleteMember"));
 			pstmt.setString(1, m.getUserId());
+			result=pstmt.executeUpdate();
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int updatePassword(Connection conn, String userId, String password) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(sql.getProperty("updatePassword"));
+			pstmt.setString(1, password);
+			pstmt.setString(2, userId);
 			result=pstmt.executeUpdate();
 		}
 		catch(SQLException e) {

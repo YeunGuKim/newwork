@@ -1,1 +1,4 @@
 SELECT * FROM MEMBER;
+UPDATE MEMBER
+SET password='+lhdichR3TOKcNz1Naoqkv7ng23Wr/EiZYPojgmWKT8WvACcZSgm4PxccGaVoDzdzjcvE57/TROVnabx9dPqvg==';
+ALTER TABLE MEMBER  MODIFY PHONE varchar2(20);

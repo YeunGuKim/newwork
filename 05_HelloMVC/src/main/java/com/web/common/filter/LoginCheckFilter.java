@@ -11,26 +11,20 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpFilter;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
-import com.web.common.PasswordEncodingWrapper;
+import com.web.member.model.vo.Member;
 
 /**
- * Servlet Filter implementation class EncryptFilter
+ * Servlet Filter implementation class LoginCheckFilter
  */
-@WebFilter(servletNames = {
-		"enrollMemberEnd","login","updatePassword"
-})
-public class EncryptFilter extends HttpFilter implements Filter {
+@WebFilter("/member/memberView.do")
+public class LoginCheckFilter extends HttpFilter implements Filter {
        
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 6189870645239892632L;
-
-	/**
      * @see HttpFilter#HttpFilter()
      */
-    public EncryptFilter() {
+    public LoginCheckFilter() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -48,9 +42,18 @@ public class EncryptFilter extends HttpFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		// place your code here
-		PasswordEncodingWrapper pew=new PasswordEncodingWrapper((HttpServletRequest)request);
-		// pass the request along the filter chain
-		chain.doFilter(pew, response);
+		HttpSession session=((HttpServletRequest)request).getSession(false);
+		Member loginMember=(Member)session.getAttribute("loginMember");
+		if(loginMember!=null&&loginMember.getUserId().equals(request.getParameter("id"))) {
+			//로그인을 했다. 회원보기 요청한 아이디랑 일치하면
+			//화면보여주기
+			chain.doFilter(request, response);
+		}
+		else {
+			request.setAttribute("msg", "잘못된 접근입니다. :(");
+			request.setAttribute("loc", "/");
+			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+		}
 	}
 
 	/**

@@ -93,6 +93,7 @@
 					</td>
 				</tr>
 			</table>
+			<input type="button" value="비밀번호변경" onclick="fn_updatePassword();"/>
 			<input type="button" value="정보수정" onclick="fn_updateMember();"/>
 			<input type="button" value="탈퇴" onclick="fn_deleteMember();"/>
 		</form>
@@ -106,6 +107,11 @@
 		const fn_deleteMember=()=>{
 			$("#memberFrm").attr("action","<%=request.getContextPath()%>/member/deleteMember.do")
 			$("#memberFrm").submit();
+		}
+		const fn_updatePassword=()=>{
+			//새창으로 패스워드 수정페이지 연결
+			open("<%=request.getContextPath()%>/member/updatePassword.do?userId=<%=loginMember!=null?loginMember.getUserId():""%>",
+					"_blank","width=400,height=210");
 		}
 	</script>
 <%@ include file="/views/common/footer.jsp"%>
